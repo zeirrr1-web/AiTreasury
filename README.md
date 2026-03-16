@@ -68,6 +68,7 @@ Autonomous AI news platform that detects global events, generates articles, and 
 - `ADMIN_USERNAME`
 - `ADMIN_PASSWORD`
 - `NEXTAUTH_SECRET`
+- `NEXTAUTH_URL`
 - `CRON_SECRET`
 
 ## Deployment (Vercel)
@@ -97,3 +98,8 @@ Autonomous AI news platform that detects global events, generates articles, and 
 
 
 Cron security: set `CRON_SECRET` and send `Authorization: Bearer <CRON_SECRET>` to `/api/events/scan`.
+
+
+### Vercel Environment Setup
+
+In Vercel Project Settings → Environment Variables, add all variables from `.env.example` (especially `DATABASE_URL`, `NEXTAUTH_SECRET`, `EVENT_REGISTRY_API_KEY`, and `CRON_SECRET`).

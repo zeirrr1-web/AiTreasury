@@ -1,3 +1,4 @@
+import { env } from "@/lib/env";
 import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -11,8 +12,8 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         if (
-          credentials?.username === process.env.ADMIN_USERNAME &&
-          credentials.password === process.env.ADMIN_PASSWORD
+          credentials?.username === env.ADMIN_USERNAME &&
+          credentials?.password === env.ADMIN_PASSWORD
         ) {
           return { id: "admin", name: "AI News Admin" };
         }
@@ -20,5 +21,6 @@ export const authOptions: NextAuthOptions = {
       }
     })
   ],
-  session: { strategy: "jwt" }
+  session: { strategy: "jwt" },
+  secret: env.NEXTAUTH_SECRET
 };

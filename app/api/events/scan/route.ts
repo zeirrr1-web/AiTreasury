@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { runEventScanner } from "@/jobs/eventScanner";
+import { env } from "@/lib/env";
 
 export const runtime = "nodejs";
 
 export async function GET(request: NextRequest) {
-  const cronSecret = process.env.CRON_SECRET;
+  const cronSecret = env.CRON_SECRET;
   if (cronSecret) {
     const authHeader = request.headers.get("authorization");
     if (authHeader !== `Bearer ${cronSecret}`) {

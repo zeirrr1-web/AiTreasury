@@ -1,3 +1,4 @@
+import { env } from "@/lib/env";
 import { NewsSourceItem } from "@/types/news";
 
 interface NewsApiResponse {
@@ -18,13 +19,6 @@ interface EventRegistryResponse {
       source?: { title?: string };
     }>;
   };
-}
-
-interface RssItem {
-  title?: string;
-  link?: string;
-  pubDate?: string;
-  description?: string;
 }
 
 async function safeFetch<T>(url: string, options?: RequestInit): Promise<T | null> {
@@ -64,8 +58,8 @@ async function fetchGoogleNewsRss(): Promise<NewsSourceItem[]> {
 }
 
 export async function fetchLatestNews(): Promise<NewsSourceItem[]> {
-  const newsApiKey = process.env.NEWS_API_KEY;
-  const eventRegistryKey = process.env.EVENT_REGISTRY_API_KEY;
+  const newsApiKey = env.NEWS_API_KEY;
+  const eventRegistryKey = env.EVENT_REGISTRY_API_KEY;
 
   const [newsApi, gdelt, eventRegistry, rss] = await Promise.all([
     newsApiKey
