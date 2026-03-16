@@ -14,7 +14,8 @@
     "job:article-pipeline": "tsx jobs/articlePipeline.ts",
     "postinstall": "node scripts/postinstall.mjs && prisma generate",
     "dist": "next build",
-    "vercel-build": "next build"
+    "vercel-build": "next build",
+    "check:conflicts": "bash scripts/check-conflicts.sh"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",

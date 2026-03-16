@@ -111,3 +111,15 @@ If Vercel Project Settings currently has **Build Command** set to `dist`, change
 
 A compatibility script `dist` is also included in `package.json`, mapped to `next build`, so existing misconfigured Vercel projects can still build.
 Additionally, `postinstall` creates a `node_modules/.bin/dist` shim so Vercel projects configured with Build Command `dist` can execute successfully.
+
+
+### Merge Conflict Safety Check
+
+Before pushing or deploying, run:
+
+```bash
+npm run check:conflicts
+```
+
+This fails if conflict markers like `<<<<<<<`, `=======`, or `>>>>>>>` exist in the repo.
+If your PR shows conflicts (like in `.env.example`, `README.md`, or `app/api/*/route.ts`), keep the resolved versions from this branch and remove all conflict markers before merging.
