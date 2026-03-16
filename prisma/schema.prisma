@@ -1,0 +1,59 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Event {
+  id              String      @id @default(cuid())
+  title           String
+  description     String
+  location        String?
+  importanceScore Int
+  category        String
+  createdAt       DateTime    @default(now())
+  articles        Article[]
+  sources         Source[]
+  trends          Trend[]
+}
+
+model Article {
+  id        String      @id @default(cuid())
+  headline  String
+  summary   String
+  body      String
+  createdAt DateTime    @default(now())
+  eventId   String
+  event     Event       @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  broadcast Broadcast?
+}
+
+model Source {
+  id        String   @id @default(cuid())
+  name      String
+  url       String
+  createdAt DateTime @default(now())
+  eventId   String
+  event     Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+}
+
+model Broadcast {
+  id        String   @id @default(cuid())
+  videoUrl  String
+  script    String
+  createdAt DateTime @default(now())
+  articleId String   @unique
+  article   Article  @relation(fields: [articleId], references: [id], onDelete: Cascade)
+}
+
+model Trend {
+  id        String   @id @default(cuid())
+  topic     String
+  score     Int
+  createdAt DateTime @default(now())
+  eventId   String
+  event     Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+}
