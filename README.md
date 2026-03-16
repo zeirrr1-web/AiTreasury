@@ -110,3 +110,4 @@ In Vercel Project Settings → Environment Variables, add all variables from `.e
 If Vercel Project Settings currently has **Build Command** set to `dist`, change it to `npm run build` (or `npm run vercel-build`).
 
 A compatibility script `dist` is also included in `package.json`, mapped to `next build`, so existing misconfigured Vercel projects can still build.
+Additionally, `postinstall` creates a `node_modules/.bin/dist` shim so Vercel projects configured with Build Command `dist` can execute successfully.

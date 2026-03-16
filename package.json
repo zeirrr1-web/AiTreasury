@@ -12,7 +12,7 @@
     "seed": "tsx prisma/seed.ts",
     "job:event-scanner": "tsx jobs/eventScanner.ts",
     "job:article-pipeline": "tsx jobs/articlePipeline.ts",
-    "postinstall": "prisma generate",
+    "postinstall": "node scripts/postinstall.mjs && prisma generate",
     "dist": "next build",
     "vercel-build": "next build"
   },
