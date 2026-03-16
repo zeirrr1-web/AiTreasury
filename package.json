@@ -12,7 +12,9 @@
     "seed": "tsx prisma/seed.ts",
     "job:event-scanner": "tsx jobs/eventScanner.ts",
     "job:article-pipeline": "tsx jobs/articlePipeline.ts",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "dist": "next build",
+    "vercel-build": "next build"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",

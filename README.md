@@ -103,3 +103,10 @@ Cron security: set `CRON_SECRET` and send `Authorization: Bearer <CRON_SECRET>` 
 ### Vercel Environment Setup
 
 In Vercel Project Settings → Environment Variables, add all variables from `.env.example` (especially `DATABASE_URL`, `NEXTAUTH_SECRET`, `EVENT_REGISTRY_API_KEY`, and `CRON_SECRET`).
+
+
+### Vercel Build Command Fix
+
+If Vercel Project Settings currently has **Build Command** set to `dist`, change it to `npm run build` (or `npm run vercel-build`).
+
+A compatibility script `dist` is also included in `package.json`, mapped to `next build`, so existing misconfigured Vercel projects can still build.
